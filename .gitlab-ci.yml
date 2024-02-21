@@ -1,0 +1,81 @@
+include:
+  - project: 'analytics/data-engineering/databricks/tooling/gitlab-templates'
+    file: 'databricks-asset-bundle.yaml'
+
+stages:
+  - validate
+  - deploy-dev
+  - deploy-stage
+  - deploy-prod
+  - run
+
+variables:
+    BUNDLE_NAME: sql_generator_pipeline
+    BUNDLE_VAR_git_branch: $CI_COMMIT_BRANCH
+
+
+.dev:
+  variables:
+    DATABRICKS_CLIENT_ID: ${DATABRICKS_CLIENT_ID_NONPROD}
+    DATABRICKS_CLIENT_SECRET: ${DATABRICKS_CLIENT_SECRET_NONPROD}
+    DATABRICKS_BUNDLE_ENV: dev
+
+.stage:
+  variables:
+    DATABRICKS_CLIENT_ID: ${DATABRICKS_CLIENT_ID_NONPROD}
+    DATABRICKS_CLIENT_SECRET: ${DATABRICKS_CLIENT_SECRET_NONPROD}
+    DATABRICKS_BUNDLE_ENV: stage
+  rules:
+    - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH
+
+.prod:
+  variables:
+    DATABRICKS_CLIENT_ID: ${DATABRICKS_CLIENT_ID_PROD}
+    DATABRICKS_CLIENT_SECRET: ${DATABRICKS_CLIENT_SECRET_PROD}
+    DATABRICKS_BUNDLE_ENV: prod
+  rules:
+    - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH
+
+
+Dev Validate:
+  extends: 
+    - .dev
+    - .validate
+  stage: validate
+
+# Stage Validate:
+#   extends: 
+#     - .stage
+#     - .validate
+#   stage: validate
+
+# Prod Validate:
+#   extends: 
+#     - .prod
+#     - .validate
+#   stage: validate
+
+Dev Deploy:
+  extends:
+    - .dev
+    - .deploy
+  stage: deploy-dev
+  needs:
+    - "Dev Validate"
+
+# Stage Deploy:
+#   extends:
+#     - .stage
+#     - .deploy
+#   stage: deploy-stage
+#   needs:
+#     - "Stage Validate"
+
+# Prod Deploy:
+#   extends:
+#     - .prod
+#     - .deploy
+#   stage: deploy-prod
+#   needs:
+#     - "Prod Validate"
+#     - "Stage Deploy"
