@@ -1,0 +1,412 @@
+segments:
+  - segment: | 
+        {
+        "Operator": "AND",
+        "groups": [
+            {
+                "type": "properties",
+                "Operator": "AND",
+                "criteria": [
+                    {"name": "attr_1", "Operator": "eq", "value": "1", "datasource": "table_1"}, 
+                    {"name": "attr_2", "Operator": "contains", "value": "'%text%'", "datasource": "table_1"},
+                    {"name": "attr_3", "Operator": "in", "value": "(1, 2, 3)", "datasource": "table_2"}
+                ]
+            },
+            {
+                "type": "properties",
+                "Operator": "OR",
+                "criteria": [
+                    {"name": "attr_4", "Operator": "is available", "value": "", "datasource": "table_2"},
+                    {"name": "attr_5", "Operator": "neq", "value": "1", "datasource": "table_3"}
+                ]
+            }
+        ]
+        }
+
+  - segment: | 
+          {
+            "Operator": "AND",
+            "groups": [
+              {
+                "type": "properties",
+                "Operator": "OR",
+                "criteria": [
+                  {"name": "attr_1", "Operator": "eq", "value": "1", "datasource": "table_1"},
+                  {"name": "attr_2", "Operator": "eq", "value": "1", "datasource": "table_1"},
+                  {"name": "attr_3", "Operator": "eq", "value": "1", "datasource": "table_2"}
+                ]
+              },
+              {
+                "type": "properties",
+                "Operator": "AND",
+                "criteria": [
+                  {"name": "attr_4", "Operator": "eq", "value": "1", "datasource": "table_2"},
+                  {"name": "attr_5", "Operator": "eq", "value": "1", "datasource": "table_3"},
+                  {"name": "attr_6", "Operator": "eq", "value": "1", "datasource": "table_4"}
+                ]
+              },
+              {
+                "type": "event",
+                "Operator": "None",
+                "criteria": [
+                  {"name": "attr_8", "Operator": "eq", "value": "1", "datasource": "table_5"}
+                ]
+              }
+            ]
+            }
+
+  - segment: |
+        {
+          "Operator": "OR",
+          "Count": "True",
+          "groups": [
+            {
+              "type": "properties",
+              "Operator": "OR",
+              "criteria": [
+                {"name": "attr_1", "Operator": "eq", "value": "1", "datasource": "table_1"},
+                {"name": "attr_2", "Operator": "eq", "value": "1", "datasource": "table_1"},
+                {"name": "attr_3", "Operator": "eq", "value": "1", "datasource": "table_2"}
+              ]
+            },
+            {
+              "type": "properties",
+              "Operator": "AND",
+              "criteria": [
+                {"name": "attr_4", "Operator": "eq", "value": "1", "datasource": "table_2"},
+                {"name": "attr_5", "Operator": "eq", "value": "1", "datasource": "table_3"},
+                {"name": "attr_6", "Operator": "eq", "value": "1", "datasource": "table_4"}
+              ]
+            },
+            {
+              "type": "event",
+              "Operator": "None",
+              "criteria": [
+                {"name": "attr_8", "Operator": "eq", "value": "1", "datasource": "table_5"}
+              ]
+            }
+          ]
+        }
+
+  - segment: |
+        {
+          "Operator": "None",
+          "groups": [
+            {
+              "type": "properties",
+              "Operator": "OR",
+              "criteria": [
+                {"name": "attr_1", "Operator": "eq", "value": "1", "datasource": "table_1"},
+                {"name": "attr_2", "Operator": "neq", "value": "1", "datasource": "table_1"},
+                {"name": "attr_3", "Operator": "eq", "value": "1", "datasource": "table_2"}
+              ]
+            }
+          ]
+        }
+
+  - segment: | 
+        {
+          "Operator": "None",
+          "groups": [
+            {
+              "type": "event",
+              "Operator": "None",
+              "criteria": [
+                {"name": "attr_8", "Operator": "eq", "value": "1", "datasource": "table_1"}
+              ]
+            }
+          ]
+        }
+
+  - segment: | 
+      {
+        "Operator": "None",
+        "groups": [
+          {
+            "type": "properties",
+            "Operator": "AND",
+            "criteria": [
+              {"name": "attr_1", "Operator": "eq", "value": "1", "datasource": "table_1"},
+              {"name": "attr_2", "Operator": "eq", "value": "1", "datasource": "table_1"},
+              {"name": "attr_3", "Operator": "eq", "value": "1", "datasource": "table_2"}
+            ]
+          }
+        ]
+      }
+
+  - segment: | 
+      {
+        "Operator": "None",
+        "groups": [
+          {
+            "type": "properties",
+            "Operator": "AND",
+            "criteria": [
+              {"name": "attr_1", "Operator": "is between", "value": "('2023-01-11','2024-01-11')", "datasource": "table_1"},
+              {"name": "attr_2", "Operator": "does not contain", "value": "'%text%'", "datasource": "table_1"},
+              {"name": "attr_3", "Operator": "is between", "value": "(1000,2000)", "datasource": "table_2"}
+            ]
+          }
+        ]
+      }
+
+  - segment: | 
+          {
+            "Operator": "None",
+            "groups": [
+              {
+                "type": "event",
+                "Operator": "AND",
+                "criteria": [
+                  {"name": "attr_8", "Operator": "eq", "value": "1", "datasource": "table_5"},
+                  {"name": "attr_2", "Operator": "lte", "value": "100", "datasource": "table_5"}
+                ],
+                "aggregate_operator": "AND",
+                "aggregate": [
+                  {"name": "pid", "Operator": "at least", "value": "1", "aggregates": "Average of"},
+                  {"name": "zuid", "Operator": "eq", "value": "1", "aggregates": "Count of"}
+                ]
+              }
+            ]
+          }
+
+  - segment: | 
+          {
+            "Operator": "OR",
+            "groups": [
+              {
+                "type": "event",
+                "Operator": "None",
+                "criteria": [
+                  {"name": "attr_8", "Operator": "eq", "value": "1", "datasource": "table_5"}
+                ],
+                "aggregate_operator": "OR",
+                "aggregate": [
+                  {"name": "pid", "Operator": "at least", "value": "1", "aggregates": "Average of"},
+                  {"name": "id", "Operator": "at most", "value": "1", "aggregates": "Sum of"},
+                  {"name": "zuid", "Operator": "eq", "value": "1", "aggregates": "Count of"}
+                ]
+              },
+              {
+                "type": "properties",
+                "Operator": "AND",
+                "criteria": [
+                  {"name": "attr_1", "Operator": "is between", "value": "('2023-01-11','2024-01-11')", "datasource": "table_1"},
+                  {"name": "attr_2", "Operator": "does not contain", "value": "'%text%'", "datasource": "table_1"},
+                  {"name": "attr_3", "Operator": "is between", "value": "(1000,2000)", "datasource": "table_2"}
+                ]
+              }
+            ]
+          }
+
+  # - segment: | 
+  #       {
+  #           "Operator": "AND",
+  #           "groups": [
+  #             {
+  #               "type": "properties",
+  #               "Operator": "OR",
+  #               "criteria": [
+  #                 {"name": "attr_1", "Operator": "eq", "value": "1", "datasource": "table_1"},
+  #                 {"name": "attr_2", "Operator": "lt", "value": "1", "datasource": "table_1"},
+  #                 {"name": "attr_3", "Operator": "lte", "value": "1", "datasource": "table_2"}
+  #               ]
+  #             },
+  #             {
+  #               "type": "properties",
+  #               "Operator": "AND",
+  #               "criteria": [
+  #                 {"name": "attr_4", "Operator": "is", "value": "1", "datasource": "table_2"},
+  #                 {"name": "attr_5", "Operator": "is not", "value": "1", "datasource": "table_3"},
+  #                 {"name": "attr_6", "Operator": "eq", "value": "1", "datasource": "table_4"}
+  #               ]
+  #             },
+  #             {
+  #               "type": "properties",
+  #               "Operator": "AND",
+  #               "criteria": [
+  #                 {"name": "attr_4", "Operator": "eq", "value": "1", "datasource": "table_2"},
+  #                 {"name": "attr_5", "Operator": "eq", "value": "1", "datasource": "table_3"},
+  #                 {"name": "attr_6", "Operator": "eq", "value": "1", "datasource": "table_4"}
+  #               ]
+  #             },
+  #             {
+  #               "type": "properties",
+  #               "Operator": "AND",
+  #               "criteria": [
+  #                 {"name": "attr_4", "Operator": "eq", "value": "1", "datasource": "table_2"},
+  #                 {"name": "attr_5", "Operator": "eq", "value": "1", "datasource": "table_3"},
+  #                 {"name": "attr_6", "Operator": "eq", "value": "1", "datasource": "table_4"}
+  #               ]
+  #             },
+  #             {
+  #               "type": "properties",
+  #               "Operator": "AND",
+  #               "criteria": [
+  #                 {"name": "attr_4", "Operator": "eq", "value": "1", "datasource": "table_2"},
+  #                 {"name": "attr_5", "Operator": "eq", "value": "1", "datasource": "table_3"},
+  #                 {"name": "attr_6", "Operator": "eq", "value": "1", "datasource": "table_4"}
+  #               ]
+  #             },
+  #             {
+  #               "type": "properties",
+  #               "Operator": "AND",
+  #               "criteria": [
+  #                 {"name": "attr_4", "Operator": "eq", "value": "1", "datasource": "table_2"},
+  #                 {"name": "attr_5", "Operator": "eq", "value": "1", "datasource": "table_3"},
+  #                 {"name": "attr_6", "Operator": "eq", "value": "1", "datasource": "table_4"}
+  #               ]
+  #             },
+  #             {
+  #               "type": "properties",
+  #               "Operator": "AND",
+  #               "criteria": [
+  #                 {"name": "attr_4", "Operator": "eq", "value": "1", "datasource": "table_2"},
+  #                 {"name": "attr_5", "Operator": "eq", "value": "1", "datasource": "table_3"},
+  #                 {"name": "attr_6", "Operator": "eq", "value": "1", "datasource": "table_4"}
+  #               ]
+  #             },
+  #             {
+  #               "type": "properties",
+  #               "Operator": "AND",
+  #               "criteria": [
+  #                 {"name": "attr_4", "Operator": "eq", "value": "1", "datasource": "table_2"},
+  #                 {"name": "attr_5", "Operator": "eq", "value": "1", "datasource": "table_3"},
+  #                 {"name": "attr_6", "Operator": "eq", "value": "1", "datasource": "table_4"}
+  #               ]
+  #             },
+  #             {
+  #               "type": "properties",
+  #               "Operator": "AND",
+  #               "criteria": [
+  #                 {"name": "attr_4", "Operator": "eq", "value": "1", "datasource": "table_2"},
+  #                 {"name": "attr_5", "Operator": "eq", "value": "1", "datasource": "table_3"},
+  #                 {"name": "attr_6", "Operator": "eq", "value": "1", "datasource": "table_4"}
+  #               ]
+  #             },
+  #             {
+  #               "type": "properties",
+  #               "Operator": "AND",
+  #               "criteria": [
+  #                 {"name": "attr_4", "Operator": "eq", "value": "1", "datasource": "table_2"},
+  #                 {"name": "attr_5", "Operator": "eq", "value": "1", "datasource": "table_3"},
+  #                 {"name": "attr_6", "Operator": "eq", "value": "1", "datasource": "table_4"}
+  #               ]
+  #             },
+  #             {
+  #               "type": "properties",
+  #               "Operator": "AND",
+  #               "criteria": [
+  #                 {"name": "attr_4", "Operator": "eq", "value": "1", "datasource": "table_2"},
+  #                 {"name": "attr_5", "Operator": "eq", "value": "1", "datasource": "table_3"},
+  #                 {"name": "attr_6", "Operator": "eq", "value": "1", "datasource": "table_4"}
+  #               ]
+  #             },
+  #             {
+  #               "type": "properties",
+  #               "Operator": "AND",
+  #               "criteria": [
+  #                 {"name": "attr_4", "Operator": "eq", "value": "1", "datasource": "table_2"},
+  #                 {"name": "attr_5", "Operator": "eq", "value": "1", "datasource": "table_3"},
+  #                 {"name": "attr_6", "Operator": "eq", "value": "1", "datasource": "table_4"}
+  #               ]
+  #             },
+  #             {
+  #               "type": "properties",
+  #               "Operator": "AND",
+  #               "criteria": [
+  #                 {"name": "attr_4", "Operator": "eq", "value": "1", "datasource": "table_2"},
+  #                 {"name": "attr_5", "Operator": "eq", "value": "1", "datasource": "table_3"},
+  #                 {"name": "attr_6", "Operator": "eq", "value": "1", "datasource": "table_4"}
+  #               ]
+  #             },
+  #             {
+  #               "type": "properties",
+  #               "Operator": "AND",
+  #               "criteria": [
+  #                 {"name": "attr_4", "Operator": "eq", "value": "1", "datasource": "table_2"},
+  #                 {"name": "attr_5", "Operator": "eq", "value": "1", "datasource": "table_3"},
+  #                 {"name": "attr_6", "Operator": "eq", "value": "1", "datasource": "table_4"}
+  #               ]
+  #             },
+  #             {
+  #               "type": "properties",
+  #               "Operator": "AND",
+  #               "criteria": [
+  #                 {"name": "attr_4", "Operator": "eq", "value": "1", "datasource": "table_2"},
+  #                 {"name": "attr_5", "Operator": "eq", "value": "1", "datasource": "table_3"},
+  #                 {"name": "attr_6", "Operator": "eq", "value": "1", "datasource": "table_4"}
+  #               ]
+  #             },
+  #             {
+  #               "type": "properties",
+  #               "Operator": "AND",
+  #               "criteria": [
+  #                 {"name": "attr_4", "Operator": "eq", "value": "1", "datasource": "table_2"},
+  #                 {"name": "attr_5", "Operator": "eq", "value": "1", "datasource": "table_3"},
+  #                 {"name": "attr_6", "Operator": "eq", "value": "1", "datasource": "table_4"}
+  #               ]
+  #             },
+  #             {
+  #               "type": "properties",
+  #               "Operator": "AND",
+  #               "criteria": [
+  #                 {"name": "attr_4", "Operator": "eq", "value": "1", "datasource": "table_2"},
+  #                 {"name": "attr_5", "Operator": "gte", "value": "1", "datasource": "table_3"},
+  #                 {"name": "attr_6", "Operator": "eq", "value": "1", "datasource": "table_4"}
+  #               ]
+  #             },
+  #             {
+  #               "type": "properties",
+  #               "Operator": "AND",
+  #               "criteria": [
+  #                 {"name": "attr_4", "Operator": "eq", "value": "1", "datasource": "table_2"},
+  #                 {"name": "attr_5", "Operator": "eq", "value": "1", "datasource": "table_3"},
+  #                 {"name": "attr_6", "Operator": "eq", "value": "1", "datasource": "table_4"}
+  #               ]
+  #             },
+  #             {
+  #               "type": "properties",
+  #               "Operator": "AND",
+  #               "criteria": [
+  #                 {"name": "attr_4", "Operator": "eq", "value": "1", "datasource": "table_2"},
+  #                 {"name": "attr_5", "Operator": "eq", "value": "1", "datasource": "table_3"},
+  #                 {"name": "attr_6", "Operator": "eq", "value": "1", "datasource": "table_4"}
+  #               ]
+  #             },
+  #             {
+  #               "type": "properties",
+  #               "Operator": "AND",
+  #               "criteria": [
+  #                 {"name": "attr_4", "Operator": "eq", "value": "1", "datasource": "table_2"},
+  #                 {"name": "attr_5", "Operator": "eq", "value": "1", "datasource": "table_3"},
+  #                 {"name": "attr_6", "Operator": "eq", "value": "1", "datasource": "table_4"}
+  #               ]
+  #             },
+  #             {
+  #               "type": "properties",
+  #               "Operator": "AND",
+  #               "criteria": [
+  #                 {"name": "attr_4", "Operator": "eq", "value": "1", "datasource": "table_2"},
+  #                 {"name": "attr_5", "Operator": "eq", "value": "1", "datasource": "table_3"},
+  #                 {"name": "attr_6", "Operator": "eq", "value": "1", "datasource": "table_4"}
+  #               ]
+  #             },
+  #             {
+  #               "type": "properties",
+  #               "Operator": "OR",
+  #               "criteria": [
+  #                 {"name": "attr_4", "Operator": "eq", "value": "1", "datasource": "table_2"},
+  #                 {"name": "attr_5", "Operator": "eq", "value": "1", "datasource": "table_3"},
+  #                 {"name": "attr_6", "Operator": "eq", "value": "1", "datasource": "table_4"}
+  #               ]
+  #             },
+  #             {
+  #               "type": "event",
+  #               "Operator": "None",
+  #               "criteria": [
+  #                 {"name": "attr_8", "Operator": "eq", "value": "1", "datasource": "table_5"}
+  #               ]
+  #             }
+  #           ]
+  #           }
